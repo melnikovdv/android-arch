@@ -2,7 +2,6 @@ package com.example.arch.screens.blogitems;
 
 import com.example.arch.blog.model.BlogItem;
 import com.example.arch.blog.service.FindBlogItemService;
-import com.example.arch.screens.blogitem.BlogItemMvpView;
 import com.example.arch.screens.common.mvp.MvpPresenter;
 import com.example.arch.screens.common.nav.BackPressDispatcher;
 import com.example.arch.screens.common.nav.ScreenNavigator;

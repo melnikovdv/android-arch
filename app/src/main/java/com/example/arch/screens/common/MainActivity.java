@@ -1,17 +1,11 @@
 package com.example.arch.screens.common;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import com.example.arch.R;
 import com.example.arch.screens.common.nav.BackPressDispatcher;
 import com.example.arch.screens.common.nav.BackPressedListener;
 import com.example.arch.screens.common.nav.ScreenNavigator;
-import com.example.arch.screens.root.RootFragment;
-import com.ncapdevi.fragnav.FragNavController;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
 import java.util.Set;

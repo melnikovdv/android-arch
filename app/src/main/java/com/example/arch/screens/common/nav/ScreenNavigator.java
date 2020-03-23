@@ -14,7 +14,7 @@ public class ScreenNavigator implements FragNavController.RootFragmentListener {
 
     private final FragNavController fragNavController;
 
-    public ScreenNavigator(FragmentManager fragmentManager, Bundle savedInstanceState)  {
+    public ScreenNavigator(FragmentManager fragmentManager, Bundle savedInstanceState) {
         fragNavController = new FragNavController(fragmentManager, R.id.container);
         fragNavController.setRootFragmentListener(this);
         fragNavController.initialize(FragNavController.TAB1, savedInstanceState);

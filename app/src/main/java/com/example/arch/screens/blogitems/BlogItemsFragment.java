@@ -9,13 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.example.arch.App;
 import com.example.arch.blog.service.FindBlogItemService;
-import com.example.arch.screens.blogitem.BlogItemMvpView;
-import com.example.arch.screens.blogitem.BlogItemMvpViewImpl;
-import com.example.arch.screens.blogitem.BlogItemPresenter;
 import com.example.arch.screens.common.MainActivity;
 import com.example.arch.util.ThreadPoster;
-
-import static com.example.arch.screens.blogitem.BlogItemFragment.ARG_ITEM_ID;
 
 public class BlogItemsFragment extends Fragment {
 

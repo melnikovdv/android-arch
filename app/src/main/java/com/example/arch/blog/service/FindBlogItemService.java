@@ -6,7 +6,6 @@ import com.example.arch.api.dto.BlogViewsAndVotesDto;
 import com.example.arch.blog.model.BlogItem;
 import com.example.arch.blog.repo.BlogItemRepo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FindBlogItemService {
@@ -30,9 +29,14 @@ public class FindBlogItemService {
     private BlogItem requestFromServer(long id) {
         BlogItemDto blogItemDto = api.requestBlogItem(id);
         BlogItem blogItem = new BlogItem(
-                id, blogItemDto.getTitle(), blogItemDto.getText(),
-                blogItemDto.getViewCount(), blogItemDto.getUpVotes(), blogItemDto.getDownVotes(),
-                blogItemDto.getCreated(), System.currentTimeMillis()
+                id,
+                blogItemDto.getTitle(),
+                blogItemDto.getText(),
+                blogItemDto.getViewCount(),
+                blogItemDto.getUpVotes(),
+                blogItemDto.getDownVotes(),
+                blogItemDto.getCreated(),
+                System.currentTimeMillis()
         );
         blogItemRepo.add(blogItem);
         return blogItem;
@@ -42,11 +46,14 @@ public class FindBlogItemService {
         BlogViewsAndVotesDto blogViewsAndVotesDto = api.refreshBlogViewsAndVotes(id);
         BlogItem blogItemFromCache = blogItemRepo.findById(id);
         BlogItem blogItem = new BlogItem(
-                id, blogItemFromCache.getTitle(), blogItemFromCache.getText(),
+                id,
+                blogItemFromCache.getTitle(),
+                blogItemFromCache.getText(),
                 blogViewsAndVotesDto.getViewCount(),
                 blogViewsAndVotesDto.getUpVotes(),
                 blogViewsAndVotesDto.getDownVotes(),
-                blogItemFromCache.getCreated(), System.currentTimeMillis()
+                blogItemFromCache.getCreated(),
+                System.currentTimeMillis()
         );
         blogItemRepo.update(blogItem);
         return blogItem;

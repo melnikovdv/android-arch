@@ -42,7 +42,8 @@ public class RootFragment extends Fragment {
     }
 
     private void setup() {
-        btnBlogItem.setOnClickListener(v -> screenNavigator.toBlogItem(Long.parseLong(edtBlogItemId.getText().toString())));
+        btnBlogItem.setOnClickListener(
+                v -> screenNavigator.toBlogItem(Long.parseLong(edtBlogItemId.getText().toString())));
         btnBlogItems.setOnClickListener(v -> screenNavigator.toBlogItems());
     }
 

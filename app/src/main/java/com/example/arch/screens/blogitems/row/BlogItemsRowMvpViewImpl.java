@@ -1,17 +1,14 @@
 package com.example.arch.screens.blogitems.row;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.example.arch.R;
 import com.example.arch.blog.model.BlogItem;
 import com.example.arch.screens.common.mvp.MvpViewBase;
 
-import java.util.List;
-
 public class BlogItemsRowMvpViewImpl extends MvpViewBase
-        implements BlogItemsRowMvpView  {
+        implements BlogItemsRowMvpView {
 
     private final Listener listener;
 
