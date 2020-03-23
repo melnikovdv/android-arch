@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">arch</string>
+    <string name="show_blog_items">Show all blog items</string>
+    <string name="show_blog_item">Show blog item</string>
+    <string name="views_count">👁</string>
+    <string name="upVotes">👍</string>
+    <string name="downVotes">👎</string>
+    <string name="go_back">Go back</string>
+    <string name="refresh">Refresh</string>
+</resources>

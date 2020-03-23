@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/blog_item_fragment__llContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        >
+
+    <TextView
+            android:id="@+id/blog_item_fragment__tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textSize_title"
+            android:paddingBottom="@dimen/padding_normal"
+            />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/padding_normal"
+            >
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/views_count"
+                android:textSize="@dimen/textSize_subtitle"
+                android:layout_marginEnd="@dimen/padding_small"
+                />
+
+        <TextView
+                android:id="@+id/blog_item_fragment__tvViewCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textSize_subtitle"
+                android:layout_marginEnd="@dimen/padding_normal"
+                />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/upVotes"
+                android:layout_marginEnd="@dimen/padding_small"
+                />
+
+        <TextView
+                android:id="@+id/blog_item_fragment__tvUpVotes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/downVotes"
+                android:textSize="@dimen/textSize_subtitle"
+                android:layout_marginEnd="@dimen/padding_normal"
+                />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/downVotes"
+                android:layout_marginEnd="@dimen/padding_small"
+                />
+
+        <TextView
+                android:id="@+id/blog_item_fragment__tvDownVotes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textSize_subtitle"
+                />
+
+    </LinearLayout>
+
+</LinearLayout>

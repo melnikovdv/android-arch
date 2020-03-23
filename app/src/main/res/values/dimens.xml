@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textSize_title">24sp</dimen>
+    <dimen name="textSize_subtitle">18sp</dimen>
+    <dimen name="textSize_regular">16sp</dimen>
+
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_normal">16dp</dimen>
+</resources>

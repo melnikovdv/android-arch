@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding_normal"
+        >
+
+    <ProgressBar
+            android:id="@+id/blog_item_fragment__progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            />
+
+    <LinearLayout
+            android:id="@+id/blog_item_fragment__llContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+        <TextView
+                android:id="@+id/blog_item_fragment__tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textSize_title"
+                android:paddingBottom="@dimen/padding_normal"
+                />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/padding_normal"
+                >
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/views_count"
+                    android:textSize="@dimen/textSize_subtitle"
+                    android:layout_marginEnd="@dimen/padding_small"
+                    />
+
+            <TextView
+                    android:id="@+id/blog_item_fragment__tvViewCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/textSize_subtitle"
+                    android:layout_marginEnd="@dimen/padding_normal"
+                    />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/upVotes"
+                    android:layout_marginEnd="@dimen/padding_small"
+                    />
+
+            <TextView
+                    android:id="@+id/blog_item_fragment__tvUpVotes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/downVotes"
+                    android:textSize="@dimen/textSize_subtitle"
+                    android:layout_marginEnd="@dimen/padding_normal"
+                    />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/downVotes"
+                    android:layout_marginEnd="@dimen/padding_small"
+                    />
+
+            <TextView
+                    android:id="@+id/blog_item_fragment__tvDownVotes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/textSize_subtitle"
+                    />
+
+        </LinearLayout>
+
+        <TextView
+                android:id="@+id/blog_item_fragment__tvText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/padding_normal"
+                >
+
+            <Button
+                    android:id="@+id/blog_item_fragment__btnRefresh"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/refresh"
+                    android:layout_marginEnd="@dimen/padding_normal"
+                    />
+
+            <Button
+                    android:id="@+id/blog_item_fragment__btnGoBack"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/go_back"
+                    />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
