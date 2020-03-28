@@ -12,14 +12,14 @@ import com.example.arch.blog.service.FindBlogItemService;
 import com.example.arch.screens.common.MainActivity;
 import com.example.arch.util.ThreadPoster;
 
-public class BlogItemFragment extends Fragment {
+public class BlogItemMvpFragment extends Fragment {
 
     public static final String ARG_ITEM_ID = "itemId";
 
     private BlogItemPresenter presenter;
 
     public static Fragment newInstance(long itemId) {
-        Fragment fragment = new BlogItemFragment();
+        Fragment fragment = new BlogItemMvpFragment();
         Bundle args = new Bundle();
         args.putLong(ARG_ITEM_ID, itemId);
         fragment.setArguments(args);

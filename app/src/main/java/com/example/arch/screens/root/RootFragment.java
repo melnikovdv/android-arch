@@ -18,8 +18,12 @@ public class RootFragment extends Fragment {
     private ScreenNavigator screenNavigator;
 
     private Button btnBlogItem;
-    private Button btnBlogItems;
     private EditText edtBlogItemId;
+
+    private Button btnBlogItems;
+
+    private Button btnBlogItemVm;
+    private EditText edtBlogItemIdVm;
 
     public static RootFragment newInstance() {
         return new RootFragment();
@@ -34,17 +38,31 @@ public class RootFragment extends Fragment {
     @Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.root_fragment, container, false);
+
         btnBlogItem = rootView.findViewById(R.id.root_fragment__btnBlogItem);
         edtBlogItemId = rootView.findViewById(R.id.root_fragment__edtBlogItemId);
+
         btnBlogItems = rootView.findViewById(R.id.root_fragment__btnBlogItems);
+
+        btnBlogItemVm = rootView.findViewById(R.id.root_fragment__btnBlogItemVm);
+        edtBlogItemIdVm = rootView.findViewById(R.id.root_fragment__edtBlogItemIdVm);
+
         setup();
         return rootView;
     }
 
     private void setup() {
-        btnBlogItem.setOnClickListener(
-                v -> screenNavigator.toBlogItem(Long.parseLong(edtBlogItemId.getText().toString())));
+        btnBlogItem.setOnClickListener(v -> {
+            long id = Long.parseLong(edtBlogItemId.getText().toString());
+            screenNavigator.toBlogItem(id);
+        });
+
         btnBlogItems.setOnClickListener(v -> screenNavigator.toBlogItems());
+
+        btnBlogItemVm.setOnClickListener(view -> {
+            long id = Long.parseLong(edtBlogItemIdVm.getText().toString());
+            screenNavigator.toBlogItemVm(id);
+        });
     }
 
     @Nullable private MainActivity getMainActivity() {
