@@ -16,7 +16,7 @@ public class BlogItemViewModel extends ViewModel implements BackPressedListener 
     private final ScreenNavigator screenNavigator;
 
     private BlogItem blogItem;
-    private MutableLiveData<BlogItem> blogItemLiveData;
+    private MutableLiveData<BlogItem> blogItemLiveData = new MutableLiveData<>();
     private final MutableLiveData<Boolean> loadingLiveData = new MutableLiveData<>();
 
     private Thread thread;
@@ -26,13 +26,10 @@ public class BlogItemViewModel extends ViewModel implements BackPressedListener 
         this.itemId = itemId;
         this.findBlogItemService = findBlogItemService;
         this.screenNavigator = screenNavigator;
-        loadingLiveData.postValue(true);
+        loadingLiveData.setValue(true);
     }
 
-    public LiveData<BlogItem> getBlogItemLiveData() {
-        if (blogItemLiveData == null) {
-            blogItemLiveData = new MutableLiveData<>();
-        }
+    public MutableLiveData<BlogItem> getBlogItemLiveData() {
         return blogItemLiveData;
     }
 
@@ -54,6 +51,7 @@ public class BlogItemViewModel extends ViewModel implements BackPressedListener 
     }
 
     private void postLiveData(BlogItem blogItem) {
+        Timber.d("postLiveData");
         blogItemLiveData.postValue(blogItem);
         loadingLiveData.postValue(false);
     }

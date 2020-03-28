@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        >
+
+    <data>
+
+        <variable
+                name="vm"
+                type="com.example.arch.screens.blogitem2.BlogItemViewModel"
+                />
+
+        <import type="android.view.View"/>
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/padding_normal"
+            >
+
+        <ProgressBar
+                android:id="@+id/blog_item_fragment__progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility='@{vm.loadingLiveData ? View.VISIBLE : View.GONE}'
+                />
+
+        <LinearLayout
+                android:id="@+id/blog_item_fragment__llContent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility='@{vm.loadingLiveData ? View.GONE : View.VISIBLE}'
+                >
+
+            <TextView
+                    android:id="@+id/blog_item_fragment__tvTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/textSize_title"
+                    android:paddingBottom="@dimen/padding_normal"
+                    android:text='@{vm.blogItemLiveData.title}'
+                    />
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/padding_normal"
+                    >
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/views_count"
+                        android:textSize="@dimen/textSize_subtitle"
+                        android:layout_marginEnd="@dimen/padding_small"
+                        />
+
+                <TextView
+                        android:id="@+id/blog_item_fragment__tvViewCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/textSize_subtitle"
+                        android:layout_marginEnd="@dimen/padding_normal"
+                        android:text='@{"" + vm.blogItemLiveData.viewCount}'
+                        />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/upVotes"
+                        android:layout_marginEnd="@dimen/padding_small"
+                        />
+
+                <TextView
+                        android:id="@+id/blog_item_fragment__tvUpVotes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/textSize_subtitle"
+                        android:layout_marginEnd="@dimen/padding_normal"
+                        android:text='@{"" + vm.blogItemLiveData.upVotes}'
+                        />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/downVotes"
+                        android:layout_marginEnd="@dimen/padding_small"
+                        />
+
+                <TextView
+                        android:id="@+id/blog_item_fragment__tvDownVotes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/textSize_subtitle"
+                        android:text='@{"" + vm.blogItemLiveData.downVotes}'
+                        />
+
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/blog_item_fragment__tvText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text='@{"" + vm.blogItemLiveData.text}'
+                    />
+
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/padding_normal"
+                    >
+
+                <Button
+                        android:id="@+id/blog_item_fragment__btnRefresh"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/refresh"
+                        android:layout_marginEnd="@dimen/padding_normal"
+                        android:onClick="@{() -> vm.onRefreshClicked()}"
+                        />
+
+                <Button
+                        android:id="@+id/blog_item_fragment__btnGoBack"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/go_back"
+                        android:onClick="@{() -> vm.onGoBackClicked()}"
+                        />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</layout>
