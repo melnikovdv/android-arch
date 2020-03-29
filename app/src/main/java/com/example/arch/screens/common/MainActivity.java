@@ -2,7 +2,9 @@ package com.example.arch.screens.common;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.arch.App;
 import com.example.arch.R;
+import com.example.arch.di.PresentationRoot;
 import com.example.arch.screens.common.nav.BackPressDispatcher;
 import com.example.arch.screens.common.nav.BackPressedListener;
 import com.example.arch.screens.common.nav.ScreenNavigator;
@@ -14,22 +16,18 @@ public class MainActivity extends AppCompatActivity implements BackPressDispatch
 
     private final Set<BackPressedListener> backPressedListeners = new HashSet<>();
 
-    private ScreenNavigator screenNavigator;
+    private PresentationRoot presentationRoot;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        presentationRoot = new PresentationRoot(this, ((App) getApplication()).getCompositionRoot(),
+                savedInstanceState);
         setContentView(R.layout.main_activity);
-        screenNavigator = new ScreenNavigator(getSupportFragmentManager(), savedInstanceState);
-
     }
 
     @Override protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        screenNavigator.onSaveInstanceState(outState);
-    }
-
-    public ScreenNavigator getScreenNavigator() {
-        return screenNavigator;
+        presentationRoot.getScreenNavigator().onSaveInstanceState(outState);
     }
 
     @Override
@@ -51,5 +49,25 @@ public class MainActivity extends AppCompatActivity implements BackPressDispatch
 
     @Override public void unregisterListener(BackPressedListener listener) {
         backPressedListeners.remove(listener);
+    }
+
+    public PresentationRoot getPresentationRoot() {
+        return presentationRoot;
+    }
+
+    public ScreenNavigator getScreenNavigator() {
+        return presentationRoot.getScreenNavigator();
+    }
+
+    public PresenterFactory getPresenterFactory() {
+        return presentationRoot.getPresenterFactory();
+    }
+
+    public ViewModelFactory getViewModelFactory() {
+        return presentationRoot.provideViewModelFactory();
+    }
+
+    public MvpViewFactory getMvpViewFactory() {
+        return getPresentationRoot().getMvpViewFactory();
     }
 }

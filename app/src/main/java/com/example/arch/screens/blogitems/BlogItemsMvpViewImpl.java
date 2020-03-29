@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.arch.R;
 import com.example.arch.blog.model.BlogItem;
 import com.example.arch.screens.blogitems.row.BlogItemsRowMvpView;
+import com.example.arch.screens.common.MvpViewFactory;
 import com.example.arch.screens.common.mvp.MvpViewObservableBase;
 
 import java.util.List;
@@ -18,10 +19,11 @@ public class BlogItemsMvpViewImpl extends MvpViewObservableBase<BlogItemsMvpView
     private final RecyclerView rvBlogItems;
     private final BlogItemsAdapter blogItemsAdapter;
 
-    public BlogItemsMvpViewImpl(LayoutInflater layoutInflater, ViewGroup parent, Context context) {
+    public BlogItemsMvpViewImpl(LayoutInflater layoutInflater, ViewGroup parent, Context context,
+            MvpViewFactory mvpViewFactory) {
         setRootView(layoutInflater.inflate(R.layout.blog_items_fragment, parent, false));
 
-        blogItemsAdapter = new BlogItemsAdapter(layoutInflater, this);
+        blogItemsAdapter = mvpViewFactory.getBlogItemsAdapter(this);
         rvBlogItems = findViewById(R.id.blog_items_fragment__rvBlogItems);
         rvBlogItems.setLayoutManager(new LinearLayoutManager(context));
         rvBlogItems.setAdapter(blogItemsAdapter);

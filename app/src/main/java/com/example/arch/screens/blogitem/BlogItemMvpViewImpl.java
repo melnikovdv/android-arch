@@ -21,8 +21,6 @@ public class BlogItemMvpViewImpl extends MvpViewObservableBase<BlogItemMvpView.L
     private final TextView tvViewCount;
     private final TextView tvUpVotes;
     private final TextView tvDownVotes;
-    private final Button btnGoBack;
-    private final Button btnRefresh;
 
     public BlogItemMvpViewImpl(LayoutInflater layoutInflater, ViewGroup parent) {
         setRootView(layoutInflater.inflate(R.layout.blog_item_fragment, parent, false));
@@ -34,10 +32,10 @@ public class BlogItemMvpViewImpl extends MvpViewObservableBase<BlogItemMvpView.L
         tvUpVotes = findViewById(R.id.blog_item_fragment__tvUpVotes);
         tvDownVotes = findViewById(R.id.blog_item_fragment__tvDownVotes);
 
-        btnGoBack = findViewById(R.id.blog_item_fragment__btnGoBack);
+        Button btnGoBack = findViewById(R.id.blog_item_fragment__btnGoBack);
         btnGoBack.setOnClickListener(v -> goBack());
 
-        btnRefresh = findViewById(R.id.blog_item_fragment__btnRefresh);
+        Button btnRefresh = findViewById(R.id.blog_item_fragment__btnRefresh);
         btnRefresh.setOnClickListener(v -> refresh());
     }
 

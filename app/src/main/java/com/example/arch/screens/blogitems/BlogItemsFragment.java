@@ -7,10 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import com.example.arch.App;
-import com.example.arch.blog.service.FindBlogItemService;
 import com.example.arch.screens.common.MainActivity;
-import com.example.arch.util.ThreadPoster;
+import com.example.arch.screens.common.PresenterFactory;
 
 public class BlogItemsFragment extends Fragment {
 
@@ -23,14 +21,14 @@ public class BlogItemsFragment extends Fragment {
 
     @Override public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //noinspection ConstantConditions
-        presenter = new BlogItemsPresenter(getMainActivity().getScreenNavigator(), getMainActivity(),
-                getFindBlogItemService(), getMainThreadPoster());
     }
 
     @Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-        BlogItemsMvpView view = new BlogItemsMvpViewImpl(inflater, container, getContext());
+        BlogItemsMvpView view = getMainActivity().getMvpViewFactory().getBlogItemsView(container, getContext());
+
+        PresenterFactory presenterFactory = getMainActivity().getPresenterFactory();
+        presenter = presenterFactory.getBlogItemsPresenter(getMainActivity());
         presenter.bindView(view);
         return view.getRootView();
     }
@@ -50,19 +48,9 @@ public class BlogItemsFragment extends Fragment {
         super.onDestroy();
     }
 
-    @Nullable private MainActivity getMainActivity() {
-        return (MainActivity) getActivity();
-    }
-
-    private FindBlogItemService getFindBlogItemService() {
-        App app = (App) getActivity().getApplication();
-        assert app != null;
-        return app.provideFindBlogItemService();
-    }
-
-    private ThreadPoster getMainThreadPoster() {
-        App app = (App) getActivity().getApplication();
-        assert app != null;
-        return app.provideMainThreadPoster();
+    private MainActivity getMainActivity() {
+        MainActivity activity = (MainActivity) getActivity();
+        assert activity != null;
+        return activity;
     }
 }

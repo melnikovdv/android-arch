@@ -13,20 +13,23 @@ public class BlogItemViewModel extends ViewModel implements BackPressedListener 
 
     private final long itemId;
     private final FindBlogItemService findBlogItemService;
-    private final ScreenNavigator screenNavigator;
 
+    private ScreenNavigator screenNavigator;
     private BlogItem blogItem;
     private MutableLiveData<BlogItem> blogItemLiveData = new MutableLiveData<>();
     private final MutableLiveData<Boolean> loadingLiveData = new MutableLiveData<>();
 
     private Thread thread;
 
-    public BlogItemViewModel(long itemId, FindBlogItemService findBlogItemService,
-            ScreenNavigator screenNavigator) {
+    public BlogItemViewModel(long itemId, FindBlogItemService findBlogItemService, ScreenNavigator screenNavigator) {
         this.itemId = itemId;
         this.findBlogItemService = findBlogItemService;
         this.screenNavigator = screenNavigator;
         loadingLiveData.setValue(true);
+    }
+
+    public void updateScreenNavigator(ScreenNavigator screenNavigator) {
+        this.screenNavigator = screenNavigator;
     }
 
     public MutableLiveData<BlogItem> getBlogItemLiveData() {

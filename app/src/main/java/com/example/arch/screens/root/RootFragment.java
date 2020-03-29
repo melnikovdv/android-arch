@@ -11,11 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.example.arch.R;
 import com.example.arch.screens.common.MainActivity;
-import com.example.arch.screens.common.nav.ScreenNavigator;
 
 public class RootFragment extends Fragment {
-
-    private ScreenNavigator screenNavigator;
 
     private Button btnBlogItem;
     private EditText edtBlogItemId;
@@ -31,8 +28,6 @@ public class RootFragment extends Fragment {
 
     @Override public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //noinspection ConstantConditions
-        screenNavigator = getMainActivity().getScreenNavigator();
     }
 
     @Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -54,18 +49,20 @@ public class RootFragment extends Fragment {
     private void setup() {
         btnBlogItem.setOnClickListener(v -> {
             long id = Long.parseLong(edtBlogItemId.getText().toString());
-            screenNavigator.toBlogItem(id);
+            getMainActivity().getScreenNavigator().toBlogItem(id);
         });
 
-        btnBlogItems.setOnClickListener(v -> screenNavigator.toBlogItems());
+        btnBlogItems.setOnClickListener(v -> getMainActivity().getScreenNavigator().toBlogItems());
 
         btnBlogItemVm.setOnClickListener(view -> {
             long id = Long.parseLong(edtBlogItemIdVm.getText().toString());
-            screenNavigator.toBlogItemVm(id);
+            getMainActivity().getScreenNavigator().toBlogItemVm(id);
         });
     }
 
-    @Nullable private MainActivity getMainActivity() {
-        return (MainActivity) getActivity();
+    private MainActivity getMainActivity() {
+        MainActivity activity = (MainActivity) getActivity();
+        assert activity != null;
+        return activity;
     }
 }

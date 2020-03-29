@@ -7,10 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import com.example.arch.App;
-import com.example.arch.blog.service.FindBlogItemService;
 import com.example.arch.screens.common.MainActivity;
-import com.example.arch.util.ThreadPoster;
+import com.example.arch.screens.common.MvpViewFactory;
 
 public class BlogItemMvpFragment extends Fragment {
 
@@ -28,15 +26,15 @@ public class BlogItemMvpFragment extends Fragment {
 
     @Override public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        long id = getArguments().getLong(ARG_ITEM_ID);
-        //noinspection ConstantConditions
-        presenter = new BlogItemPresenter(id, getMainActivity().getScreenNavigator(), getMainActivity(),
-                getFindBlogItemService(), getMainThreadPoster());
     }
 
     @Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-        BlogItemMvpView view = new BlogItemMvpViewImpl(inflater, container);
+        MvpViewFactory mvpViewFactory = getMainActivity().getMvpViewFactory();
+        BlogItemMvpView view = mvpViewFactory.getBlogItemMvpView(container);
+
+        long id = getArguments().getLong(ARG_ITEM_ID);
+        presenter = getMainActivity().getPresenterFactory().getBlogItemPresenter(id, getMainActivity());
         presenter.bindView(view);
         return view.getRootView();
     }
@@ -56,19 +54,9 @@ public class BlogItemMvpFragment extends Fragment {
         super.onDestroy();
     }
 
-    @Nullable private MainActivity getMainActivity() {
-        return (MainActivity) getActivity();
-    }
-
-    private FindBlogItemService getFindBlogItemService() {
-        App app = (App) getActivity().getApplication();
-        assert app != null;
-        return app.provideFindBlogItemService();
-    }
-
-    private ThreadPoster getMainThreadPoster() {
-        App app = (App) getActivity().getApplication();
-        assert app != null;
-        return app.provideMainThreadPoster();
+    private MainActivity getMainActivity() {
+        MainActivity activity = (MainActivity) getActivity();
+        assert activity != null;
+        return activity;
     }
 }

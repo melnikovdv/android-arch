@@ -29,8 +29,7 @@ public class BlogItemsAdapter extends RecyclerView.Adapter<BlogItemsAdapter.Blog
 
     private final List<BlogItem> items = new ArrayList<>();
 
-    public BlogItemsAdapter(LayoutInflater layoutInflater,
-            BlogItemsRowMvpView.Listener listener) {
+    public BlogItemsAdapter(LayoutInflater layoutInflater, BlogItemsRowMvpView.Listener listener) {
         this.layoutInflater = layoutInflater;
         this.listener = listener;
     }
