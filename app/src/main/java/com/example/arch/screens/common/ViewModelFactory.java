@@ -5,15 +5,18 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.arch.blog.service.FindBlogItemService;
+import com.example.arch.di.Presentation;
 import com.example.arch.screens.blogitem2.BlogItemViewModel;
 import com.example.arch.screens.common.nav.ScreenNavigator;
 
-public class ViewModelFactory {
+import javax.inject.Inject;
+
+@Presentation public class ViewModelFactory {
 
     private final ScreenNavigator screenNavigator;
     private final FindBlogItemService findBlogItemService;
 
-    public ViewModelFactory(ScreenNavigator screenNavigator, FindBlogItemService findBlogItemService) {
+    @Inject public ViewModelFactory(ScreenNavigator screenNavigator, FindBlogItemService findBlogItemService) {
         this.screenNavigator = screenNavigator;
         this.findBlogItemService = findBlogItemService;
     }

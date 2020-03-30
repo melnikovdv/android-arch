@@ -5,15 +5,12 @@ import com.example.arch.api.Api;
 import com.example.arch.api.ApiImpl;
 import com.example.arch.blog.repo.BlogItemRepo;
 import com.example.arch.blog.repo.BlogItemRepoImpl;
-import com.example.arch.blog.service.FindBlogItemService;
-import com.example.arch.util.Generator;
 import com.example.arch.util.MainThreadPoster;
 import com.example.arch.util.ThreadPoster;
+import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
 
 import javax.inject.Named;
-import javax.inject.Singleton;
 
 @Module
 public class AppModule {
@@ -24,23 +21,11 @@ public class AppModule {
         this.application = application;
     }
 
-    @Provides @Singleton Api getApi(Generator generator) {
-        return new ApiImpl(generator);
-    }
+    @Module interface BindsModule {
+        @Binds @Named("mainThread") ThreadPoster getMainThreadPoster(MainThreadPoster mainThreadPoster);
 
-    @Provides @Singleton Generator provideGenerator() {
-        return new Generator();
-    }
+        @Binds Api getApi(ApiImpl apiImpl);
 
-    @Provides @Singleton FindBlogItemService provideFindBlogItemService(BlogItemRepo blogItemRepo, Api api) {
-        return new FindBlogItemService(blogItemRepo, api);
-    }
-
-    @Provides @Singleton BlogItemRepo provideBlogItemRepo() {
-        return new BlogItemRepoImpl();
-    }
-
-    @Provides @Singleton @Named("mainThread") ThreadPoster provideMainThreadPoster() {
-        return new MainThreadPoster();
+        @Binds BlogItemRepo getBlogItemRepo(BlogItemRepoImpl blogItemRepoImpl);
     }
 }

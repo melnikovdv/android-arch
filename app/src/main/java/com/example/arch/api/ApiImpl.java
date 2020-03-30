@@ -4,11 +4,14 @@ import com.example.arch.api.dto.BlogItemDto;
 import com.example.arch.api.dto.BlogViewsAndVotesDto;
 import com.example.arch.util.Generator;
 
-public class ApiImpl implements Api {
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+@Singleton public class ApiImpl implements Api {
 
     private final Generator generator;
 
-    public ApiImpl(Generator generator) {
+    @Inject public ApiImpl(Generator generator) {
         this.generator = generator;
     }
 

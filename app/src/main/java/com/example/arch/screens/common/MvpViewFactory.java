@@ -3,6 +3,7 @@ package com.example.arch.screens.common;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import com.example.arch.di.Presentation;
 import com.example.arch.screens.blogitem.BlogItemMvpView;
 import com.example.arch.screens.blogitem.BlogItemMvpViewImpl;
 import com.example.arch.screens.blogitems.BlogItemsAdapter;
@@ -10,11 +11,13 @@ import com.example.arch.screens.blogitems.BlogItemsMvpView;
 import com.example.arch.screens.blogitems.BlogItemsMvpViewImpl;
 import com.example.arch.screens.blogitems.row.BlogItemsRowMvpView;
 
-public class MvpViewFactory {
+import javax.inject.Inject;
+
+@Presentation public class MvpViewFactory {
 
     private final LayoutInflater layoutInflater;
 
-    public MvpViewFactory(LayoutInflater layoutInflater) {
+    @Inject public MvpViewFactory(LayoutInflater layoutInflater) {
         this.layoutInflater = layoutInflater;
     }
 

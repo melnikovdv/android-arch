@@ -1,6 +1,5 @@
 package com.example.arch.screens.blogitem;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,14 +28,6 @@ public class BlogItemMvpFragment extends BaseFragment {
         args.putLong(ARG_ITEM_ID, itemId);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    @Override public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-    }
-
-    @Override public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
     }
 
     @Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,

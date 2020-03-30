@@ -6,14 +6,16 @@ import com.example.arch.api.dto.BlogViewsAndVotesDto;
 import com.example.arch.blog.model.BlogItem;
 import com.example.arch.blog.repo.BlogItemRepo;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.util.List;
 
-public class FindBlogItemService {
+@Singleton public class FindBlogItemService {
 
     private final BlogItemRepo blogItemRepo;
     private final Api api;
 
-    public FindBlogItemService(BlogItemRepo blogItemRepo, Api api) {
+    @Inject public FindBlogItemService(BlogItemRepo blogItemRepo, Api api) {
         this.blogItemRepo = blogItemRepo;
         this.api = api;
     }

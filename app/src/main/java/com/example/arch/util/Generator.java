@@ -1,8 +1,14 @@
 package com.example.arch.util;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.util.Random;
 
-public class Generator {
+@Singleton public class Generator {
+
+    @Inject public Generator() {
+
+    }
 
     private final Random random = new Random();
 
