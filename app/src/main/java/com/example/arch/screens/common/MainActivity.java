@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements BackPressDispatch
     }
 
     public ViewModelFactory getViewModelFactory() {
-        return presentationRoot.provideViewModelFactory();
+        return presentationRoot.getViewModelFactory();
     }
 
     public MvpViewFactory getMvpViewFactory() {

@@ -7,10 +7,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import com.example.arch.screens.common.MainActivity;
 import com.example.arch.screens.common.MvpViewFactory;
+import com.example.arch.screens.common.base.BaseFragment;
 
-public class BlogItemMvpFragment extends Fragment {
+public class BlogItemMvpFragment extends BaseFragment {
 
     public static final String ARG_ITEM_ID = "itemId";
 
@@ -30,11 +30,11 @@ public class BlogItemMvpFragment extends Fragment {
 
     @Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-        MvpViewFactory mvpViewFactory = getMainActivity().getMvpViewFactory();
+        MvpViewFactory mvpViewFactory = getPresentationRoot().getMvpViewFactory();
         BlogItemMvpView view = mvpViewFactory.getBlogItemMvpView(container);
 
         long id = getArguments().getLong(ARG_ITEM_ID);
-        presenter = getMainActivity().getPresenterFactory().getBlogItemPresenter(id, getMainActivity());
+        presenter = getPresentationRoot().getPresenterFactory().getBlogItemPresenter(id, getBackPressDispatcher());
         presenter.bindView(view);
         return view.getRootView();
     }
@@ -52,11 +52,5 @@ public class BlogItemMvpFragment extends Fragment {
     @Override public void onDestroy() {
         presenter.onDestroy();
         super.onDestroy();
-    }
-
-    private MainActivity getMainActivity() {
-        MainActivity activity = (MainActivity) getActivity();
-        assert activity != null;
-        return activity;
     }
 }

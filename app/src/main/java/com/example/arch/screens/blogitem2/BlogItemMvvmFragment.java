@@ -11,10 +11,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.arch.R;
 import com.example.arch.databinding.BlogItemDatabindingFragmentBinding;
-import com.example.arch.screens.common.MainActivity;
-import com.example.arch.screens.common.nav.ScreenNavigator;
+import com.example.arch.screens.common.base.BaseFragment;
 
-public class BlogItemMvvmFragment extends Fragment {
+public class BlogItemMvvmFragment extends BaseFragment {
 
     public static final String ARG_ITEM_ID = "itemId";
 
@@ -35,9 +34,10 @@ public class BlogItemMvvmFragment extends Fragment {
     @Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         long id = getArguments().getLong(ARG_ITEM_ID);
-        ViewModelProvider viewModelProvider = getMainActivity().getViewModelFactory().getViewModelProvider(id, this);
+        ViewModelProvider viewModelProvider = getPresentationRoot().getViewModelFactory().getViewModelProvider(id,
+                this);
         blogItemViewModel = viewModelProvider.get(BlogItemViewModel.class);
-        blogItemViewModel.updateScreenNavigator(getMainActivity().getScreenNavigator());
+        blogItemViewModel.updateScreenNavigator(getPresentationRoot().getScreenNavigator());
         blogItemViewModel.loadItem();
 
         BlogItemDatabindingFragmentBinding binding = DataBindingUtil.inflate(inflater,
@@ -49,21 +49,11 @@ public class BlogItemMvvmFragment extends Fragment {
 
     @Override public void onStart() {
         super.onStart();
-        getMainActivity().registerListener(blogItemViewModel);
+        getBackPressDispatcher().registerListener(blogItemViewModel);
     }
 
     @Override public void onStop() {
-        getMainActivity().unregisterListener(blogItemViewModel);
+        getBackPressDispatcher().unregisterListener(blogItemViewModel);
         super.onStop();
-    }
-
-    private MainActivity getMainActivity() {
-        MainActivity mainActivity = (MainActivity) getActivity();
-        assert mainActivity != null;
-        return mainActivity;
-    }
-
-    public ScreenNavigator getScreenNavigator() {
-        return getMainActivity().getScreenNavigator();
     }
 }

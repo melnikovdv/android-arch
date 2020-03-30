@@ -24,35 +24,35 @@ public class CompositionRoot {
         this.context = context;
     }
 
-    private Api provideApi() {
+    private Api getApi() {
         if (api == null) {
-            api = new ApiImpl(provideGenerator());
+            api = new ApiImpl(getGenerator());
         }
         return api;
     }
 
-    private Generator provideGenerator() {
+    private Generator getGenerator() {
         if (generator == null) {
             generator = new Generator();
         }
         return generator;
     }
 
-    public FindBlogItemService provideFindBlogItemService() {
+    public FindBlogItemService getFindBlogItemService() {
         if (findBlogItemService == null) {
-            findBlogItemService = new FindBlogItemService(provideBlogItemRepo(), provideApi());
+            findBlogItemService = new FindBlogItemService(getBlogItemRepo(), getApi());
         }
         return findBlogItemService;
     }
 
-    private BlogItemRepo provideBlogItemRepo() {
+    private BlogItemRepo getBlogItemRepo() {
         if (blogItemRepo == null) {
             blogItemRepo = new BlogItemRepoImpl();
         }
         return blogItemRepo;
     }
 
-    public ThreadPoster provideMainThreadPoster() {
+    public ThreadPoster getMainThreadPoster() {
         if (mainThreadPoster == null) {
             mainThreadPoster = new MainThreadPoster();
         }

@@ -33,11 +33,11 @@ public class PresentationRoot {
     }
 
     public FindBlogItemService getFindBlogItemService() {
-        return compositionRoot.provideFindBlogItemService();
+        return compositionRoot.getFindBlogItemService();
     }
 
     public ThreadPoster getMainThreadPoster() {
-        return compositionRoot.provideMainThreadPoster();
+        return compositionRoot.getMainThreadPoster();
     }
 
     public MvpViewFactory getMvpViewFactory() {
@@ -64,7 +64,7 @@ public class PresentationRoot {
         return presenterFactory;
     }
 
-    public ViewModelFactory provideViewModelFactory() {
+    public ViewModelFactory getViewModelFactory() {
         if (viewModelFactory == null) {
             viewModelFactory = new ViewModelFactory(getScreenNavigator(), getFindBlogItemService());
         }
