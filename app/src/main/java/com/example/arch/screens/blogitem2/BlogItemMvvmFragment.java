@@ -8,14 +8,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import com.example.arch.R;
 import com.example.arch.databinding.BlogItemDatabindingFragmentBinding;
+import com.example.arch.screens.common.ViewModelFactory;
 import com.example.arch.screens.common.base.BaseFragment;
+import com.example.arch.screens.common.nav.ScreenNavigator;
+
+import javax.inject.Inject;
 
 public class BlogItemMvvmFragment extends BaseFragment {
 
     public static final String ARG_ITEM_ID = "itemId";
+
+    @Inject ViewModelFactory viewModelFactory;
+    @Inject ScreenNavigator screenNavigator;
 
     private BlogItemViewModel blogItemViewModel;
 
@@ -29,15 +35,18 @@ public class BlogItemMvvmFragment extends BaseFragment {
 
     @Override public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getPresentationComponent().inject(this);
+    }
+
+    @Override public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
     }
 
     @Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         long id = getArguments().getLong(ARG_ITEM_ID);
-        ViewModelProvider viewModelProvider = getPresentationRoot().getViewModelFactory().getViewModelProvider(id,
-                this);
-        blogItemViewModel = viewModelProvider.get(BlogItemViewModel.class);
-        blogItemViewModel.updateScreenNavigator(getPresentationRoot().getScreenNavigator());
+        blogItemViewModel = viewModelFactory.getViewModelProvider(id, this).get(BlogItemViewModel.class);
+        blogItemViewModel.updateScreenNavigator(screenNavigator);
         blogItemViewModel.loadItem();
 
         BlogItemDatabindingFragmentBinding binding = DataBindingUtil.inflate(inflater,

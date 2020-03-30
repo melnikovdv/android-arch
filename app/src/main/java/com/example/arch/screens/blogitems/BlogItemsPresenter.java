@@ -9,6 +9,7 @@ import com.example.arch.util.ThreadPoster;
 import org.jetbrains.annotations.NotNull;
 import timber.log.Timber;
 
+import javax.inject.Named;
 import java.util.List;
 
 public class BlogItemsPresenter implements MvpPresenter<BlogItemsMvpView>,
@@ -23,7 +24,7 @@ public class BlogItemsPresenter implements MvpPresenter<BlogItemsMvpView>,
     private Thread thread;
 
     public BlogItemsPresenter(ScreenNavigator screenNavigator, BackPressDispatcher backPressDispatcher,
-            FindBlogItemService findBlogItemService, ThreadPoster mainThreadPoster) {
+            FindBlogItemService findBlogItemService, @Named("mainThread") ThreadPoster mainThreadPoster) {
         this.screenNavigator = screenNavigator;
         this.backPressDispatcher = backPressDispatcher;
         this.findBlogItemService = findBlogItemService;
